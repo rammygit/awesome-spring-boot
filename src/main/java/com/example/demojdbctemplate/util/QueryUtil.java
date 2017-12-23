@@ -6,6 +6,6 @@ package com.example.demojdbctemplate.util;
  **/
 public class QueryUtil {
 
-    public static final String getAllBestBy = "select id,item,bestByDate from BestBy";
+    public static final String getAllBestBy = "select item,bestByDate from BestBy";
 
 }
