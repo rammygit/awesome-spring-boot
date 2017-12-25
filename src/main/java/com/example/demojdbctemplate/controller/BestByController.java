@@ -2,10 +2,11 @@ package com.example.demojdbctemplate.controller;
 
 import com.example.demojdbctemplate.model.BestBy;
 import com.example.demojdbctemplate.service.IBestByService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,8 +15,10 @@ import java.util.List;
  *
  */
 @RestController
+@RequestMapping("/bestby")
 public class BestByController {
 
+    private static final Logger logger = LoggerFactory.getLogger(BestByController.class);
 
     @Autowired
     private IBestByService bestByService;
@@ -25,15 +28,28 @@ public class BestByController {
      *
      * @return
      */
-    @RequestMapping("/items")
+    @RequestMapping(method = RequestMethod.GET, value = "/items")
     public ResponseEntity<List<BestBy>> allItems() {
         return ResponseEntity.ok(bestByService.getItems());
     }
 
-    @RequestMapping("/item")
-    public ResponseEntity<BestBy> getItem() {
+    /**
+     * get the response using URL
+     * http://localhost:port/bestby/item?name=?
+     *
+     * @param itemName
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/item")
+    public ResponseEntity<BestBy> getItem(@RequestParam(value = "name") String itemName) {
 
-        return ResponseEntity.ok(bestByService.getItem(1));
+        return ResponseEntity.ok(bestByService.getItem(itemName));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    public ResponseEntity<BestBy> createItem(@RequestBody BestBy bestBy) {
+        logger.info("creating new item into DB.. " + bestBy.getItem());
+        return ResponseEntity.ok(bestByService.saveItem(bestBy));
     }
 
 }

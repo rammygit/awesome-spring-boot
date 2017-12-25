@@ -34,10 +34,19 @@ public class BestbyService implements IBestByService{
     }
 
     /**
-     * @param id
+     * single item information
+     * @param itemName
      * @return
      */
-    public BestBy getItem(Integer id) {
-        return jpaBestByRepository.findByItem("Juice");
+    public BestBy getItem(String itemName) {
+        return jpaBestByRepository.findByItem(itemName);
+    }
+
+    /**
+     * @param bestBy
+     * @return
+     */
+    public BestBy saveItem(BestBy bestBy) {
+        return jpaBestByRepository.save(bestBy);
     }
 }

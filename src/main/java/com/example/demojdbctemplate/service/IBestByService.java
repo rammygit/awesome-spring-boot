@@ -14,6 +14,8 @@ public interface IBestByService {
 
     List<BestBy> getItems();
 
-    BestBy getItem(Integer id);
+    BestBy getItem(String itemName);
+
+    BestBy saveItem(BestBy bestBy);
 
 }

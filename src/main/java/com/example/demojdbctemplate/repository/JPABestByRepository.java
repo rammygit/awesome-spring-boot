@@ -19,4 +19,5 @@ public interface JPABestByRepository extends CrudRepository<BestBy, Integer> {
 
     BestBy findByItem(String item);
 
+
 }
