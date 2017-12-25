@@ -14,4 +14,6 @@ public interface IBestByService {
 
     List<BestBy> getItems();
 
+    BestBy getItem(Integer id);
+
 }

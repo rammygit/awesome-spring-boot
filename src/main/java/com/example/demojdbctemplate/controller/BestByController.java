@@ -30,4 +30,10 @@ public class BestByController {
         return ResponseEntity.ok(bestByService.getItems());
     }
 
+    @RequestMapping("/item")
+    public ResponseEntity<BestBy> getItem() {
+
+        return ResponseEntity.ok(bestByService.getItem(1));
+    }
+
 }

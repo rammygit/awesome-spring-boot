@@ -44,7 +44,7 @@ public class ServiceError {
     public ServiceError(HttpStatus status, Throwable ex) {
         this();
         this.status = status;
-        this.message = "Some unexpected error happened.";
+        this.message = "Some unexpected error happened." + ex.getMessage();
         this.debugMessage = ex.getLocalizedMessage();
     }
 
