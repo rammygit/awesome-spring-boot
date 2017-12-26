@@ -5,6 +5,23 @@
     <title>Home Page</title>
 </head>
 <body>
-Welcome to my home page.
+Welcome to Best By home page
+
+<div id="app">
+    {{ message }}
+    <ul>
+       <li v-for="item in items">
+           {{ item.item }} | {{ item.bestByDate }}
+        </li>
+    </ul>
+    <input v-model="itemName" placeholder="Enter the item name">
+
+    <button v-on:click="create">Create</button>
+</div>
+
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

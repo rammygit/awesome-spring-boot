@@ -23,6 +23,11 @@ public class BestByController {
     @Autowired
     private IBestByService bestByService;
 
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
+
     /**
      * returns the list of items with the bestby items.
      *
