@@ -2,26 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Bestby</title>
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" 
+        crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </head>
 <body>
-Welcome to Best By home page
-
-<div id="app">
-    {{ message }}
-    <ul>
-       <li v-for="item in items">
-           {{ item.item }} | {{ item.bestByDate }}
-        </li>
-    </ul>
-    <input v-model="itemName" placeholder="Enter the item name">
-
+    
+    
+<div id="app">    
+    <h1>hello there! </h1>
+    <best-by :list="items" :columns="itemColumns"></best-by>    
+    <input v-model="itemName" placeholder="Enter the item name"><br>
     <button v-on:click="create">Create</button>
 </div>
+
+<template id="myTemplate">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" v-for="name in columns">{{ name }}</th>                               
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in list">
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.item }}</td>
+                <td>{{ item.bestByDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+</template>
 
 <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="app.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 </html>

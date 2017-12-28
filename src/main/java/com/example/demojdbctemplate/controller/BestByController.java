@@ -33,8 +33,10 @@ public class BestByController {
      *
      * @return
      */
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/items")
     public ResponseEntity<List<BestBy>> allItems() {
+        logger.info("all items -> "+bestByService.getItems());
         return ResponseEntity.ok(bestByService.getItems());
     }
 

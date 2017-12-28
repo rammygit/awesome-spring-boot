@@ -1,22 +1,35 @@
 /**
  * call all item rest API 
  */
+
+let baseURL = "http://localhost:8080"
+
 var getAllItems = function(){
-    return axios.get('/bestby/items');
+    return axios.get('http://localhost:8080/bestby/items');
  }
 
-new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!',
-        itemName:'',        
-        items: [{
-            id:0,
-            item:'testItem',
-            timeStamp:232323223
+ 
 
-        }]
-    },  
+/**
+ * register the component. 
+ * list : gets the array list of items.
+ * columns : specify the column names 
+ */
+ Vue.component('best-by', {    
+    template: '#myTemplate',
+    props:{
+        list: Array,
+        columns: Array
+    }       
+  })
+
+new Vue({
+    el: '#app',    
+    data:{
+        itemName:'',
+        itemColumns : ['Id','Item','BestBy Date'],
+        items: []
+    },
     created:function() {
         // This code will run on startup
         // fetch all bestby items
@@ -25,8 +38,8 @@ new Vue({
         .catch((error) => {
             console.log(error);
         });
-      },
-      methods:{
+    },
+    methods:{
         create: function(){
             console.log('create is clicked')
             axios.post('bestby/create',{
@@ -42,8 +55,7 @@ new Vue({
                 console.log(error);
             });
         }
-      }
-}) // end of Vue instance. 
-
+      } // end of methods
+}) // end of Vue instance.
 
 
